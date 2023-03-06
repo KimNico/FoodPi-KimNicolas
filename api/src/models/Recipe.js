@@ -7,15 +7,15 @@ module.exports = (sequelize) => {
   sequelize.define('Recipe', {
     Id:{
       type: DataTypes.INTEGER,
-      allowNull:false
+     
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
+
     },
     Summary:{
       type: DataTypes.STRING,
-      allowNull:false
+   
     },
     Score:{
       type:DataTypes.FLOAT

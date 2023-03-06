@@ -20,16 +20,24 @@ export default function Detail(){
         <div>
         {
             detailstate.length > 0  ?
-            <div >
-                <h1 > {detailstate[0].title} </h1>
-                <img  src={detailstate[0].img ? detailstate[0].img :'https://st.depositphotos.com/1036708/2191/i/600/depositphotos_21918797-stock-photo-knife-and-fork-with-plate.jpg'} alt=""></img>
-                <h3 >Type Diet: </h3><h3 className={style.type} dangerouslySetInnerHTML={{__html: detailstate[0].diets.map(t => t)}}></h3>
-                <h5>summary: </h5><h5 dangerouslySetInnerHTML={{ __html: detailstate[0].summary }}></h5>
-                <h5>healthScore:{detailstate[0].score}</h5>
-                <h5>steps: </h5><h5 dangerouslySetInnerHTML={{__html: detailstate[0].instructions.map(e => e.steps.map(f => f.step+"<br/>"))}}></h5>
-            </div>:
-            <div>
-                <h2>Loading...</h2>
+            <div className={style.container}>
+                <div className={style.card_style}>
+                        <h1> {detailstate[0].title} </h1>
+                        <img src={detailstate[0].img ? detailstate[0].img : 'https://st.depositphotos.com/1036708/2191/i/600/depositphotos_21918797-stock-photo-knife-and-fork-with-plate.jpg'} alt=""></img>
+                        <h3 className={style.type} dangerouslySetInnerHTML={{ __html: detailstate[0].diets.map(t => t) }}></h3>
+                        <h5>healthScore:{detailstate[0].score}</h5>
+                    </div>
+                    <div className={style.card_summary}>
+                            <h5>summary: </h5><h5 dangerouslySetInnerHTML={{ __html: detailstate[0].summary }}></h5>
+                            <h5>steps: </h5><h5 dangerouslySetInnerHTML={{ __html: detailstate[0].instructions.map(e => e.steps.map(f => f.step + "<br/>")) }}></h5>
+                        </div>
+            </div>
+            :
+            <div className={style.loader}>
+                 <div className={style.circle}></div>
+                 <div className={style.circle}></div>
+                 <div className={style.circle}></div>
+                 <div className={style.circle}></div>
               
             </div>
         }

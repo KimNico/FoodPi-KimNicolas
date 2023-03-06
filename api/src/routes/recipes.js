@@ -37,11 +37,15 @@ router.get('/',async(req,res)=>{
 
 })
 router.get("/:id",async(req,res)=>{
-    const {id} = req.params
+    try {
+        const {id} = req.params
     let recipes = await getAllRecipes()
     let recipesID = recipes.filter(e=>e.id==id)
     if(recipesID.length){
         res.json(recipesID)
+    }
+    } catch (error) {
+        res.send(error)
     }
 })
 
@@ -49,18 +53,13 @@ router.post('/', async (req,res,next) => {
     const {
         title,
         summary,
-        spoonacularScore,
         healthScore,
         analyzedInstructions,
         createdInDb,
         typeDiets
     } = req.body;
-    if(!title || !summary) {
-        return res.status(400).send('Please, insert a title and a summary to continue!');
-    }
-    console.log(title);
-try{let createRecipe = await Recipe.create({
-       
+try{
+    let createRecipe = await Recipe.create({
         title,
         summary,
         healthScore,
@@ -71,8 +70,8 @@ let dietTypeDb = await Diets.findAll({ where:{ name:typeDiets } })
     createRecipe.addTypeDiet(dietTypeDb)
     res.status(200).send('receta creada')   
 
-}catch(e){
-    next(e)
+}catch(error){
+    next(error)
 }
 });
 module.exports = router;

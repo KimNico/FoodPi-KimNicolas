@@ -74,7 +74,7 @@ export default function Form(){
                 }
            </select>
             <div>
-                <button type="submit" onSubmit={submitHandler}>Add</button>
+                <button type="submit" >Add</button>
             </div>
         </form>
         {

@@ -54,7 +54,8 @@ export default function Home(){
         e.preventDefault(e)
         dispatch(getRecipesName(e.target.value))
         setSearch('')
-    }
+    }   
+    console.log(getRecipesName(search));
 
     return(
         <div>
@@ -77,12 +78,11 @@ export default function Home(){
                 </div>
                 
                 <div>
-                    <form onSubmit={submitHandle}>
-                    <input type="text" placeholder="Search..."
-                    value={search}
-                    onChange={searchHandle}></input>
-                    <button  type="submit">Search</button>
-                    </form>
+                <form onSubmit={submitHandle}> {/* este es para hacer enter y que funcione */}
+     
+     <input type='text' placeholder='search...' value={search} onChange={searchHandle} ></input>
+     <button  type='submit'>search</button>
+     </form>
                 </div>
           
                 <div>

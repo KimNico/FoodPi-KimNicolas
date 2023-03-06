@@ -43,7 +43,6 @@ const rootReducer = (state =  initialState, action) => {
     case CREATE_RECIPES:
     return{
       ...state,
-      recipes: state.recipes.concat(action.payload)
     }
     case ORDER_BY_PUNTUATION:
       let orderpunt = action.payload === 'menormayor' ? 
