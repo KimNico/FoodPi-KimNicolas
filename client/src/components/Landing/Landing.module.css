@@ -1,0 +1,27 @@
+.welcome{
+    text-align: center;
+  
+    background-color: #00FFA0;
+    border-radius: 1rem;
+    border: .5vmin solid #05060f;
+    box-shadow: .4rem .4rem #05060f;
+    overflow: hidden;
+    height: 500px;
+
+
+}
+.title{
+    color: #05060f;
+    font-family: 'Trocchi', serif;
+    font-size: 45px;
+    font-weight: normal;
+    line-height: 48px;
+    margin: 0;
+}
+
+.start{
+    color: #05060f;
+    font-size: 1.8rem;
+    line-height: 1.25;
+    font-weight: 700;    
+}
