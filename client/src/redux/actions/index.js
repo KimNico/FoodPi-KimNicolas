@@ -55,7 +55,8 @@ export const getRecipesName =(name)=>{
   }
 }
 
-export const createRecipe = ()=>(payload)=>{
+export const createRecipe =(payload)=>{
+  console.log("payload",payload);
   return async function(dispatch){
     const response =await fetch(`http://localhost:3001/recipes`,payload)
     const data  = response.json()

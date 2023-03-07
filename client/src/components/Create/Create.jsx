@@ -2,27 +2,41 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createRecipe, getDiets } from "../../redux/actions"
 
+function controlForm (input){
+    const reg = new RegExp('^[0-9]+$');
+    let errors = {}
+    if(!input.title) errors.title= 'please put the title of the recipe'
+    if(!input.summary) errors.summary= 'please put the summary of the recipe'
+    if(input.healthScore<0 || input.healthScore>100 || !reg.test(input.healthScore)) errors.healthScore='put a healthScore between 0-100'
+    return errors
+}
 
 export default function Form(){
+
     const dispatch = useDispatch()
     let diets = useSelector((state=>state.diets))
+    const [errors,setErrors]=useState({})      
     const [form,setForm] = useState({
         title:"",
         summary:"",
         healthScore:"",
-        instructions:"",
+        analyzedInstructions:[],
         diets:[]
     })
     useEffect(()=>{
         dispatch(getDiets())
     },[dispatch])
 
-    const changeHandler = (e)=>{
-      setForm({
-        ...form,
-        [e.target.name] : e.target.value
-      })
-    }
+    const changeHandler= (e)=>{
+        setForm({
+            ...form,
+    [e.target.name] : e.target.value
+})
+        setErrors(controlForm({
+            ...form,
+            [e.target.name] : e.target.value   
+        }))                             
+}
 
     const dietHandler =(e)=>{
         setForm({
@@ -38,10 +52,12 @@ export default function Form(){
             title:"",
             summary:"",
             healthScore:"",
-            instructions:"",
+            analyzedInstructions:[],
             diets:[]
         })
+        console.log(form);
     }
+
 
     
     return(
@@ -51,18 +67,28 @@ export default function Form(){
             <div>
                 <label>Title</label>
                 <input type="text" value={form.title} onChange={changeHandler} name="title"></input>
+                { errors.title && (
+                        <p>{errors.title}</p>
+                ) }
             </div>
             <div>
                 <label>Summary</label>
                 <input type="text" value={form.summary} onChange={changeHandler}name="summary"></input>
+                { errors.summary && (
+                        <p>{errors.summary}</p>
+                ) }
             </div>
             <div>
                 <label>HealthScore</label>
                 <input type="text" value={form.healthScore} onChange={changeHandler} name="healthScore"></input>
+                { errors.healthScore && (
+                        <p>{errors.healthScore}</p>
+                ) }
             </div>
             <div>
                 <label>Instructions</label>
-                <input type="text" value={form.instructions} onChange={changeHandler} name="instructions"></input>
+                <input type="text" value={form.analyzedInstructions} onChange={changeHandler} name="analyzedInstructions"></input>
+                
             </div>
            <select onChange={dietHandler}>
                 {
@@ -74,18 +100,16 @@ export default function Form(){
                 }
            </select>
             <div>
-                <button type="submit" >Add</button>
-            </div>
-        </form>
-        {
-            form.diets.map(e=>{
-                return(
-                    <div>
-                        <h5>{e}</h5>
-                    </div>
-                )
-            })
-        }
+            {
+
+                errors.hasOwnProperty('title') || errors.hasOwnProperty('summary')|| errors.hasOwnProperty('score')?  
+                <p > please complete all the inputs to create your recipe</p> :
+                 <button type='submit' > Create Recipe</button>  
+            
+            }
+               </div>
+               </form>
+
     </div>
     )
     }

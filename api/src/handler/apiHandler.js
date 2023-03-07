@@ -6,7 +6,7 @@ const {API_KEY} = process.env;
 
 //Traigo las recetas de la api
 const getRecipes = async()=>{
-    const response =  await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=50`)
+    const response =  await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
     const data = await response.json()
     let db = await Recipe.findAll()
     let recipes = Object.values(data.results)
@@ -29,6 +29,7 @@ const getRecipes = async()=>{
     return recipesInfo
 }
 
+// instructions: (base[i]["analyzedInstructions"] && base[i]["analyzedInstructions"].steps?base[i]["analyzedInstructions"].steps.map(item=>item.step).join(" \n"):'')
 //Filtro por nombre la receta de la api
 const getRecipeName = async(name)=>{
 
@@ -46,9 +47,9 @@ const getRecipeName = async(name)=>{
         recipesInfo.push({
             id:base[i]['id'],
             title:base[i]['title'],
-            score:base[i]["healthScore"],
+            healthScore:base[i]["healthScore"],
             summary: base[i]["summary"],
-            instructions:base[i]["analyzedInstructions"],
+            analyzedInstructions:base[i]["analyzedInstructions"],
             diets:base[i]["diets"],
             img:base[i]["image"]
         })

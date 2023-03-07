@@ -55,8 +55,8 @@ router.post('/', async (req,res,next) => {
         summary,
         healthScore,
         analyzedInstructions,
+        diets,
         createdInDb,
-        typeDiets
     } = req.body;
 try{
     let createRecipe = await Recipe.create({
@@ -64,6 +64,7 @@ try{
         summary,
         healthScore,
         analyzedInstructions,
+        diets,
         createdInDb
 })
 let dietTypeDb = await Diets.findAll({ where:{ name:typeDiets } })
@@ -71,7 +72,7 @@ let dietTypeDb = await Diets.findAll({ where:{ name:typeDiets } })
     res.status(200).send('receta creada')   
 
 }catch(error){
-    next(error)
+   res.send(error)
 }
 });
 module.exports = router;
