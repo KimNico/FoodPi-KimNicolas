@@ -20,7 +20,7 @@ export default function Home(){
     const [recipesPerPage,setrecipesPerPage]=useState(9)
     const indexLastRecipe = currentPage * recipesPerPage
     const indexFirstRecipe = indexLastRecipe - recipesPerPage      
-    const currentRecipes = recipes.slice(indexFirstRecipe,indexLastRecipe) 
+    const currentRecipes = recipes.slice(indexFirstRecipe,indexLastRecipe)
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
@@ -49,13 +49,14 @@ export default function Home(){
 
     const searchHandle = (e)=>{
         setSearch(e.target.value)
+        
     }
     const submitHandle =(e)=>{
         e.preventDefault(e)
-        dispatch(getRecipesName(e.target.value))
+        dispatch(getRecipesName(search))
         setSearch('')
-    }   
-    console.log(getRecipesName(search));
+    }
+  
 
     return(
         <div>
@@ -79,10 +80,9 @@ export default function Home(){
                 
                 <div>
                 <form onSubmit={submitHandle}> {/* este es para hacer enter y que funcione */}
-     
-     <input type='text' placeholder='search...' value={search} onChange={searchHandle} ></input>
-     <button  type='submit'>search</button>
-     </form>
+                    <input type='text' placeholder='search...' value={search} onChange={searchHandle} ></input>
+                    <button  type='submit'>search</button>
+                </form>
                 </div>
           
                 <div>

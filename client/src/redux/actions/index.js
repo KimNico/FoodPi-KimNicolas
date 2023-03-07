@@ -41,11 +41,13 @@ export const getDiets = ()=>async (dispatch) => {
   });
 };
 
-export const getRecipesName =()=> (name)=>{
+export const getRecipesName =(name)=>{
+  // console.log(name);
   return async function(dispatch){
-    const response = await fetch(`https://localhost:3001/recipes?name=${name}`)
+    const response = await fetch(`http://localhost:3001/recipes?name=${name}`)
+    console.log("response",response);
     const data = await response.json()
-    console.log(data);
+    // console.log(data);
     dispatch({
       type:"GET_RECIPES_NAME",
       payload:data
