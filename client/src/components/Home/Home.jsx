@@ -22,6 +22,12 @@ export default function Home(){
     const indexFirstRecipe = indexLastRecipe - recipesPerPage      
     const currentRecipes = recipes.slice(indexFirstRecipe,indexLastRecipe)
 
+    const cookingMinutes=(e)=>{
+        e.preventDefault(e)
+        dispatch(orderByPuntuation(e.target.value))
+        setSort(e.target.value)
+    }
+
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
@@ -33,6 +39,7 @@ export default function Home(){
     const handleFilterTypeDiet = (e)=> {
         dispatch(filterRecipesByTypeDiet(e.target.value))
     }
+   
 
     const sortHanlde =(e)=>{
         e.preventDefault(e)
@@ -60,10 +67,10 @@ export default function Home(){
 
     return(
         <div>
-            <div>
+            <div className={style.form_style}>
               
                 <div>
-                    <select onChange={handleFilterTypeDiet} >
+                    <select className={style.form_input} onChange={handleFilterTypeDiet} >
                     <option value="All">All recipes</option>
                     <option value="gluten free">Gluten Free</option>
                     <option value="ketogenic">Ketogenic</option>
@@ -80,24 +87,29 @@ export default function Home(){
                 
                 <div>
                 <form onSubmit={submitHandle}> {/* este es para hacer enter y que funcione */}
-                    <input type='text' placeholder='search...' value={search} onChange={searchHandle} ></input>
-                    <button  type='submit'>search</button>
+                    <input className={style.form_input} type='text' placeholder='search...' value={search} onChange={searchHandle} ></input>
                 </form>
+                </div>
+                <div>
+                    <select onChange={cookingMinutes}>
+                        <option value="mayorMenor"> Mayor a Menor</option>
+                        <option value="menormayor">Menor a Mayor</option>
+                    </select>
                 </div>
           
                 <div>
-                <select onChange={filterHandle}>
+                <select className={style.form_input} onChange={filterHandle}>
                     <option value="asc">Ascendent(A-Z)</option>
                     <option value="des">Descendent(Z-A)</option>
                 </select>
                 </div>
                 <div>
-                    <select  onChange={sortHanlde}>
+                    <select className={style.form_input}  onChange={sortHanlde}>
                     <option value="mayormenor">Mayor a Menor</option>
                     <option value="menormayor">Menor a Mayor</option>
                     </select>
                 </div>
-
+               
             </div>
             <div className={style.container}>
                 {

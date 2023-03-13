@@ -72,7 +72,7 @@ let dietTypeDb = await Diets.findAll({ where:{ name:typeDiets } })
     res.status(200).send('receta creada')   
 
 }catch(error){
-   res.send(error)
+   res.send("no se pudo crear la receta")
 }
 });
 module.exports = router;

@@ -98,9 +98,7 @@ const rootReducer = (state =  initialState, action) => {
     case FILTER_BY_TYPEDIET:
       const recipes = state.recipes
       
-      const typeDietFilter = action.payload === 'All' ? recipes : recipes.filter(t => t.diets.find(e => e === action.payload ) )   
-      console.log(typeDietFilter);
-      // const typeDietFilter = action.payload === 'All' ? recipes : recipes.filter(t => t.diets[0] === action.payload )  
+      const typeDietFilter = action.payload === 'All' ? recipes : recipes.filter(t => t.diets.find(e => e === action.payload ) )     
       return{
               ...state ,
               recipes : typeDietFilter

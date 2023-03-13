@@ -1,18 +1,9 @@
-.container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-
-/* FORM */
 .form_style{
 	font: 95% Arial, Helvetica, sans-serif;
 	max-width: 400px;
 	margin: 10px auto;
 	padding: 16px;
 	background: #F7F7F7;
-    display: inline-block;
 }
 
 .form_title{

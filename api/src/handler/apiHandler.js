@@ -13,50 +13,51 @@ const getRecipes = async()=>{
     let base = [...db,...recipes]
     let recipesInfo=[]
    
-    // console.log(data);
+    
     for (let i = 0; i < base.length; i++) {
   
         recipesInfo.push({
             id:base[i]['id'],
             title:base[i]['title'],
             score:base[i]["healthScore"],
+            score2:base[i]["cookingMinutes"],
             summary: base[i]["summary"],
             instructions:base[i]["analyzedInstructions"],
             diets:base[i]["diets"],
             img:base[i]["image"]
         })
     }
+    console.log(data);
     return recipesInfo
 }
 
-// instructions: (base[i]["analyzedInstructions"] && base[i]["analyzedInstructions"].steps?base[i]["analyzedInstructions"].steps.map(item=>item.step).join(" \n"):'')
-//Filtro por nombre la receta de la api
-const getRecipeName = async(name)=>{
+
+// const getRecipeName = async(name)=>{
 
 
-    let db = await Recipe.findAll()
+//     let db = await Recipe.findAll()
 
-    let recipes = await getAllRecipes()
+//     let recipes = await getAllRecipes()
 
-    let base = [...db,...recipes]
+//     let base = [...db,...recipes]
     
-    let recipesInfo=[]
+//     let recipesInfo=[]
    
-    for (let i = 0; i < base.length; i++) {
+//     for (let i = 0; i < base.length; i++) {
   
-        recipesInfo.push({
-            id:base[i]['id'],
-            title:base[i]['title'],
-            healthScore:base[i]["healthScore"],
-            summary: base[i]["summary"],
-            analyzedInstructions:base[i]["analyzedInstructions"],
-            diets:base[i]["diets"],
-            img:base[i]["image"]
-        })
-    }
-     const filteredRecipe = recipesInfo.filter((e)=> e.title===name )
-    return filteredRecipe
-}
+//         recipesInfo.push({
+//             id:base[i]['id'],
+//             title:base[i]['title'],
+//             healthScore:base[i]["healthScore"],
+//             summary: base[i]["summary"],
+//             analyzedInstructions:base[i]["analyzedInstructions"],
+//             diets:base[i]["diets"],
+//             img:base[i]["image"]
+//         })
+//     }
+//      const filteredRecipe = recipesInfo.filter((e)=> e.title===name )
+//     return filteredRecipe
+// }
 //Traigo la informacion de recetas de la BBDD 
 const getDbInfo = async () =>{
     return await Recipe.findAll({
@@ -75,7 +76,6 @@ const getAllRecipes = async () => {
     const apiInfo = await getRecipes()
     const dbInfo = await getDbInfo()
     const allRecipes = [...apiInfo,...dbInfo]
-    console.log(allRecipes);
     return allRecipes
 
 }
@@ -95,7 +95,7 @@ let diets = [
 
 module.exports={
     getRecipes,
-    getRecipeName,
+    // getRecipeName,
     getDbInfo,
     getAllRecipes,
     diets

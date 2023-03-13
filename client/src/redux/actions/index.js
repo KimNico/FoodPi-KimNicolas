@@ -23,7 +23,6 @@ export const getRecipesDetail =(id) => {
     return async function(dispatch) {
         const response  = await fetch(`http://localhost:3001/recipes/${id}`);
         const data  = await response.json()
-        console.log(data);
         dispatch({
             type: "GET_RECIPES_DETAIL",
             payload: data
@@ -32,9 +31,7 @@ export const getRecipesDetail =(id) => {
 };
 export const getDiets = ()=>async (dispatch) => {
   const response = await fetch("http://localhost:3001/diets");
-  console.log(response);
   const data = await response.json();
-  console.log(data);
   dispatch({
     type: "GET_DIET",
     payload: data,
@@ -42,12 +39,10 @@ export const getDiets = ()=>async (dispatch) => {
 };
 
 export const getRecipesName =(name)=>{
-  // console.log(name);
+ 
   return async function(dispatch){
     const response = await fetch(`http://localhost:3001/recipes?name=${name}`)
-    console.log("response",response);
-    const data = await response.json()
-    // console.log(data);
+    const data = await response.json()   
     dispatch({
       type:"GET_RECIPES_NAME",
       payload:data
@@ -56,7 +51,6 @@ export const getRecipesName =(name)=>{
 }
 
 export const createRecipe =(payload)=>{
-  console.log("payload",payload);
   return async function(dispatch){
     const response =await fetch(`http://localhost:3001/recipes`,payload)
     const data  = response.json()
@@ -87,4 +81,5 @@ export const orderByPuntuation = (payload)=>{
       payload
   }
 }
+
 

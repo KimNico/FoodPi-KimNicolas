@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createRecipe, getDiets } from "../../redux/actions"
+import style from "./Create.module.css"
 
 function controlForm (input){
     const reg = new RegExp('^[0-9]+$');
@@ -61,36 +62,36 @@ export default function Form(){
 
     
     return(
-    <div>
-        <h1>Create your own recipe</h1>
-        <form  onSubmit={submitHandler}>
+    <div >
+        <h1 className={style.form_title}>Create your own recipe</h1>
+        <form  className={style.form_style} onSubmit={submitHandler}>
             <div>
                 <label>Title</label>
-                <input type="text" value={form.title} onChange={changeHandler} name="title"></input>
+                <input className={style.form_input} type="text" value={form.title} onChange={changeHandler} name="title"></input>
                 { errors.title && (
                         <p>{errors.title}</p>
                 ) }
             </div>
             <div>
                 <label>Summary</label>
-                <input type="text" value={form.summary} onChange={changeHandler}name="summary"></input>
+                <input className={style.form_input} type="text" value={form.summary} onChange={changeHandler}name="summary"></input>
                 { errors.summary && (
                         <p>{errors.summary}</p>
                 ) }
             </div>
             <div>
                 <label>HealthScore</label>
-                <input type="text" value={form.healthScore} onChange={changeHandler} name="healthScore"></input>
+                <input className={style.form_input} type="text" value={form.healthScore} onChange={changeHandler} name="healthScore"></input>
                 { errors.healthScore && (
                         <p>{errors.healthScore}</p>
                 ) }
             </div>
             <div>
                 <label>Instructions</label>
-                <input type="text" value={form.analyzedInstructions} onChange={changeHandler} name="analyzedInstructions"></input>
+                <input className={style.form_input} type="text" value={form.analyzedInstructions} onChange={changeHandler} name="analyzedInstructions"></input>
                 
             </div>
-           <select onChange={dietHandler}>
+           <select className={style.form_input} onChange={dietHandler}>
                 {
                     diets.map(e=>{
                         return(
@@ -104,7 +105,7 @@ export default function Form(){
 
                 errors.hasOwnProperty('title') || errors.hasOwnProperty('summary')|| errors.hasOwnProperty('score')?  
                 <p > please complete all the inputs to create your recipe</p> :
-                 <button type='submit' > Create Recipe</button>  
+                 <button className={style.form_btn} type='submit' > Create Recipe</button>  
             
             }
                </div>
