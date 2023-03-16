@@ -65,14 +65,15 @@ try{
         healthScore,
         analyzedInstructions,
         diets,
-        createdInDb
+        createdInDb 
 })
-let dietTypeDb = await Diets.findAll({ where:{ name:typeDiets } })
-    createRecipe.addTypeDiet(dietTypeDb)
+
+let dietTypeDb = await Diets.findAll({ where:{ name:diets } })
+    createRecipe.addDiets(dietTypeDb)
     res.status(200).send('receta creada')   
 
 }catch(error){
-   res.send("no se pudo crear la receta")
+   res.status(404).send(error)
 }
 });
 module.exports = router;

@@ -16,13 +16,15 @@ export default function Form(){
 
     const dispatch = useDispatch()
     let diets = useSelector((state=>state.diets))
+
     const [errors,setErrors]=useState({})      
     const [form,setForm] = useState({
         title:"",
         summary:"",
         healthScore:"",
         analyzedInstructions:[],
-        diets:[]
+        diets:[],
+        createdInDb:true
     })
     useEffect(()=>{
         dispatch(getDiets())
@@ -39,21 +41,28 @@ export default function Form(){
         }))                             
 }
 
+    const instructionsHanlder=(e)=>{
+      setForm({
+        ...form,
+        analyzedInstructions:[e.target.value]
+      })
+    }
     const dietHandler =(e)=>{
         setForm({
             ...form,
             diets:[...form.diets, e.target.value]
         })
+        // form.diets.push(e.target.value)
     }
     
     const submitHandler=(e)=>{
-        e.preventDefault()
+        e.preventDefault(e)
         dispatch(createRecipe(form))
         setForm({
             title:"",
             summary:"",
             healthScore:"",
-            analyzedInstructions:[],
+            analyzedInstructions:[{}],
             diets:[]
         })
         console.log(form);
@@ -88,7 +97,7 @@ export default function Form(){
             </div>
             <div>
                 <label>Instructions</label>
-                <input className={style.form_input} type="text" value={form.analyzedInstructions} onChange={changeHandler} name="analyzedInstructions"></input>
+                <input className={style.form_input} type="text" value={form.analyzedInstructions} onChange={instructionsHanlder} name="analyzedInstructions"></input>
                 
             </div>
            <select className={style.form_input} onChange={dietHandler}>

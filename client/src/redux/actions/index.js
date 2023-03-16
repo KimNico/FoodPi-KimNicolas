@@ -1,3 +1,4 @@
+import axios from "axios"
 export const GET_RECIPES = "GET_RECIPES";
 export const GET_RECIPES_DETAIL = "GET_RECIPES_DETAIL"
 export const GET_RECIPES_NAME="GET_RECIPES_NAME"
@@ -6,6 +7,7 @@ export const CREATE_RECIPES = "CREATE_RECIPES";
 export const ORDER_BY_PUNTUATION="ORDER_BY_PUNTUATION"
 export const ORDER_BY_NAME = "ORDER_BY_NAME"
 export const FILTER_BY_TYPEDIET = "FILTER_BY_TYPEDIET"
+
 
 
 
@@ -50,16 +52,14 @@ export const getRecipesName =(name)=>{
   }
 }
 
-export const createRecipe =(payload)=>{
-  return async function(dispatch){
-    const response =await fetch(`http://localhost:3001/recipes`,payload)
-    const data  = response.json()
-    dispatch({
-      type:"CREATE_RECIPES",
-      payload: data
-    })
-  }
-}
+
+export const createRecipe = (payload) => {
+  console.log(payload);
+  return async function () {
+   let response = await axios.post(`http://localhost:3001/recipes`, payload);
+          return response
+  };
+};
 
 export const filterRecipesByTypeDiet =(payload)=>{
   return {

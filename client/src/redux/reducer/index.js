@@ -19,9 +19,23 @@ const initialState = {
 const rootReducer = (state =  initialState, action) => {
   switch (action.type) {
    case GET_RECIPES:
+    console.log(action.payload);
+  const data = action.payload?.map(e=>{
+      return{
+        id:e.id,
+        title: e.title,
+        summary: e.summary,
+        healthScore:e.score,
+        img:e.img,
+        analyzedInstructions:e.analyzedInstructions.steps,
+        diets:e.diets
+      }
+    })
+
     return{
       ...state,
-      recipes:action.payload
+      recipes:data
+
 
     }
     case GET_DIET:{
@@ -43,6 +57,7 @@ const rootReducer = (state =  initialState, action) => {
     case CREATE_RECIPES:
     return{
       ...state,
+
     }
     case ORDER_BY_PUNTUATION:
       let orderpunt = action.payload === 'menormayor' ? 
