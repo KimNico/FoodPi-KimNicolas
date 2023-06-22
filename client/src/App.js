@@ -8,7 +8,7 @@ import Navbar from './components/Navbar/Navbar';
 import Create from './components/Create/Create';
 
 
-axios.defaults.baseURL = 'https://foodpi-kimnicolas-production.up.railway.app/';
+axios.defaults.baseURL = 'https://foodpi-kimnicolas-production.up.railway.app';
 
 function App() {
  const location = useLocation()
