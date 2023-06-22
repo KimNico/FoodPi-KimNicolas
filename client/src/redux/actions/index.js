@@ -13,10 +13,10 @@ export const FILTER_BY_TYPEDIET = "FILTER_BY_TYPEDIET"
 
 export const getRecipes = () => async (dispatch) => {
     const response = await axios.get(`/recipes`);
-    const data = await response.data
+    const recipeData = await response.data;
     dispatch({
       type: GET_RECIPES,
-      payload: data,
+      payload: recipeData,
     });
   };
 
