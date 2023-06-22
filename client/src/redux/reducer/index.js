@@ -20,7 +20,7 @@ const rootReducer = (state =  initialState, action) => {
   switch (action.type) {
    case GET_RECIPES:
     console.log(action.payload);
-  const data = action.payload?.map(e=>{
+  const data = action.payload.map(e=>{
       return{
         id:e.id,
         title: e.title,
