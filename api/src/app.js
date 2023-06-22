@@ -8,7 +8,13 @@ const cors = require('cors')
 require('./db.js');
 
 const server = express();
-
+server.use(
+  cors({
+    origin: 'https://food-pi-kim-nicolas-d6sguqjho-kimnico.vercel.app', // Cambiar esto con el origen de tu cliente
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type, Authorization, x-access-token",
+  })
+);
 
 server.name = 'API';
 
