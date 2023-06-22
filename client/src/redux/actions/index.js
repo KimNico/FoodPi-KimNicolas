@@ -14,6 +14,7 @@ export const FILTER_BY_TYPEDIET = "FILTER_BY_TYPEDIET"
 export const getRecipes = () => async (dispatch) => {
     const response = await axios.get(`/recipes`);
     const recipeData =  response.data;
+    console.log(recipeData);
     dispatch({
       type: GET_RECIPES,
       payload: recipeData,
