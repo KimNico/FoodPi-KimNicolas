@@ -13,7 +13,7 @@ export const FILTER_BY_TYPEDIET = "FILTER_BY_TYPEDIET"
 
 export const getRecipes = () => async (dispatch) => {
     const response = await axios.get(`/recipes`);
-    const recipeData = await response.data;
+    const recipeData =  response.data;
     dispatch({
       type: GET_RECIPES,
       payload: recipeData,
@@ -24,7 +24,7 @@ export const getRecipes = () => async (dispatch) => {
 export const getRecipesDetail =(id) => {
     return async function(dispatch) {
         const response  = await axios.get(`/recipes/${id}`);
-        const data  = await response.data
+        const data  =  response.data
         dispatch({
             type: "GET_RECIPES_DETAIL",
             payload: data
@@ -33,7 +33,7 @@ export const getRecipesDetail =(id) => {
 };
 export const getDiets = ()=>async (dispatch) => {
   const response = await axios.get("/diets");
-  const data = await response.data
+  const data =  response.data
   dispatch({
     type: "GET_DIET",
     payload: data,
@@ -44,7 +44,7 @@ export const getRecipesName =(name)=>{
  
   return async function(dispatch){
     const response = await axios.get(`/recipes?name=${name}`)
-    const data = await response.data 
+    const data =  response.data 
     dispatch({
       type:"GET_RECIPES_NAME",
       payload:data
