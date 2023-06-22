@@ -10,7 +10,7 @@ require('./db.js');
 const server = express();
 server.use(
   cors({
-    origin: 'https://food-pi-kim-nicolas.vercel.app/', // Cambiar esto con el origen de tu cliente
+    origin: 'https://food-pi-kim-nicolas.vercel.app', // Cambiar esto con el origen de tu cliente
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type, Authorization, x-access-token",
   })
@@ -23,7 +23,7 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://food-pi-kim-nicolas.vercel.app/'); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', 'https://food-pi-kim-nicolas.vercel.app'); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
