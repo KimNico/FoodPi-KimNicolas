@@ -1,4 +1,5 @@
 import './App.css';
+import axios from 'axios';
 import Home from './components/Home/Home';
 import Detail from './components/Detail/Detail';
 import Landing from './components/Landing/Landing';
@@ -6,6 +7,8 @@ import {Route, useLocation} from "react-router-dom"
 import Navbar from './components/Navbar/Navbar';
 import Create from './components/Create/Create';
 
+
+axios.defaults.baseURL = 'http://localhost:3001/';
 
 function App() {
  const location = useLocation()
